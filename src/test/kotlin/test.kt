@@ -11,7 +11,7 @@ import org.tbank.managernews.dto.getMostRatedNews
 import java.io.File
 import kotlin.test.Test
 
-class NewsServiceTest {
+class NewsTest {
 
     private var clientGo: ClientGo = ClientGo()
 

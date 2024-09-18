@@ -30,7 +30,7 @@ class ClientGo {
             val results: List<News>
         )
         return try {
-            logger.info("Работа с HTTP")
+            logger.info("Работа с HTTP,API")
             val response: NewsResponse = client.get("https://kudago.com/public-api/v1.4/news/") {
                 parameter("page_size", count)
                 parameter("order_by", "-publication_date") // сортировка по дате публикации
@@ -45,16 +45,15 @@ class ClientGo {
             logger.debug(response.toString())
             return response.results
         } catch (e: Exception) {
-
             logger.error("Сериализация не удалась")
             emptyList() // Возвращаем пустой список в случае ошибки
         } finally {
             client.close()
-            logger.info("Работа с HTTP завершина")
+            logger.info("Работа с HTTP,API завершина")
         }
     }
 
-    fun saveNews(path: String, news: Collection<News>) {
+    fun saveNews(path: String = "src/main/resources/news.csv", news: Collection<News>) {
         val filePath = Paths.get(path)
         require(!filePath.exists()) {
             logger.error("Файл существует")  // кидает исключение, если файл существует
