@@ -51,7 +51,8 @@ ${content.toString()}
             throw RuntimeException(e);
         }
     }
-    fun generateBody(newsList: List<News>) : String{
+
+    fun generateBody(newsList: List<News>): String {
         val newsContent = news {
             header(1, "Новости дня")
 

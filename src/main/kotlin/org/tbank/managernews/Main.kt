@@ -4,7 +4,8 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.datetime.LocalDate
 import org.tbank.managernews.client.ClientGo
 import org.tbank.managernews.dsl.CustomDslCore
-import org.tbank.managernews.dto.getMostRatedNews
+import org.tbank.managernews.service.getMostRatedNews
+import org.tbank.managernews.service.saveNews
 
 
 fun main() = runBlocking {
@@ -18,7 +19,7 @@ fun main() = runBlocking {
     mostRatedNews.forEach { news ->
         println("News Title: ${news.title}")
     }
-    clientGo.saveNews(news = mostRatedNews)
+    saveNews(news = mostRatedNews)
     val newsContent = customDslCore.generateBody(newsList)
     customDslCore.saveNewsHTML(content = newsContent)
 

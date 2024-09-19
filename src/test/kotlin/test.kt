@@ -7,7 +7,8 @@ import org.junit.jupiter.api.Assertions.assertNotNull
 import org.tbank.managernews.client.ClientGo
 import org.tbank.managernews.dto.News
 import org.tbank.managernews.dto.Place
-import org.tbank.managernews.dto.getMostRatedNews
+import org.tbank.managernews.service.getMostRatedNews
+import org.tbank.managernews.service.saveNews
 import java.io.File
 import kotlin.test.Test
 
@@ -49,7 +50,7 @@ class NewsTest {
             )
         )
 
-        clientGo.saveNews(Path, newsList)
+        saveNews(Path, newsList)
 
         val file = File(Path)
         assert(file.exists())
