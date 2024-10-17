@@ -22,7 +22,7 @@ class ClientGo {
     private val location = "msk"
     val logger: Logger = LoggerFactory.getLogger(ClientGo::class.java)
 
-    suspend fun getNews(count: Int = 100): List<News> {
+    suspend fun getNews(count: Int = 100, page: Int): List<News> {
         @Serializable
         data class NewsResponse(
             val results: List<News>
@@ -39,12 +39,14 @@ class ClientGo {
                     "fields",
                     "id,title,place,description,site_url,favorites_count,comments_count,publication_date"
                 )
+                parameter("page", page)
             }.body() ?: throw Exception("Ничего не вернулось")
             logger.debug(response.toString())
+
             return response.results
         } catch (e: Exception) {
             logger.error("Сериализация не удалась")
-            emptyList() // Возвращаем пустой список в случае ошибки
+            emptyList()
         } finally {
             client.close()
             logger.info("Работа с HTTP,API завершина")
