@@ -12,7 +12,7 @@ fun saveNews(path: String = "src/main/resources/news.csv", news: Collection<News
     val logger: Logger = LoggerFactory.getLogger(ClientGo::class.java)
     val filePath = Paths.get(path)
     require(!filePath.exists()) {
-        logger.error("Файл существует")  // кидает исключение, если файл существует
+        logger.error("Файл существует")
     }
     val csv = news.joinToString("\n") { news ->
         "${news.rating},${news.id},${news.title},${news.place?.title ?: "Неизвестно"},${news.description},${news.publicationDate},${news.siteUrl},${news.favoritesCount},${news.commentsCount}"
